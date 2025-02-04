@@ -1,21 +1,28 @@
 import sys
 import pygame
 
-pygame.init()
 
-SCREEN_RESOLUTION = (640,480)
+class Game:
+	def __init__(self):
+		pygame.init()
 
-screen = pygame.display.set_mode(SCREEN_RESOLUTION)
+		SCREEN_RESOLUTION = (640,480)
+		pygame.display.set_caption('Ninja Game')
+		self.screen = pygame.display.set_mode(SCREEN_RESOLUTION)
 
-clock = pygame.time.Clock()
+		self.clock = pygame.time.Clock()
 
-while True:
+	def run(self):
+		while True:
+			for event in pygame.event.get():
+				if event.type == pygame.QUIT:
+					print('over')
+					pygame.quit()
+					sys.exit()
 
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			print('over')
-			pygame.quit()
-			sys.exit()
+			pygame.display.update()
+			self.clock.tick(60)		
 
-	pygame.display.update()
-	clock.tick(60)
+Game().run()
+
+
